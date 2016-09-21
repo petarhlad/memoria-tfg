@@ -1,0 +1,154 @@
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tocbibind}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{titlesec}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\fvset{frame=single,framesep=1mm,commandchars=\\\{\}}
+\usepackage[pdftex]{hyperref,color,graphicx}
+%\usepackage[pdftex]{hyperref}
+\usepackage{import}
+%\usepackage[pdftex,bookmarks,colorlinks]{hyperref}
+\usepackage{url}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{rotating}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage[Conny]{fncychap}
+\usepackage{listings}
+\usepackage{caption}
+\renewcommand{\lstlistingname}{Code}
+\makeatletter
+\renewcommand{\DOCH}{%
+    \vskip -4.5\baselineskip
+    \mghrulefill{3\RW}\par\nobreak
+    %\vskip -0.5\baselineskip
+    \mghrulefill{\RW}\par\nobreak
+    \CNV\FmN{\@chapapp}\space \CNoV\thechapter
+    \par\nobreak
+    \vskip -0.5\baselineskip
+   }
+  \renewcommand{\DOTI}[1]{%
+    \mghrulefill{\RW}\par\nobreak
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip 30\p@
+    }
+  \renewcommand{\DOTIS}[1]{%
+    \mghrulefill{\RW}\par\nobreak
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip 60\p@
+    }
+\makeatother
+
+% the Gantt Chart in results chapter
+\usepackage{pgfgantt}
+% Sequence diagrams
+\usepackage{tikz}
+\usetikzlibrary{arrows,shadows} % for pgf-umlsd
+\usepackage[underline=true,rounded corners=false]{pgf-umlsd}
+
+% subfigure and wrapping on figures
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+\usepackage[intoc]{nomencl}
+\makenomenclature
+
+\hypersetup{
+pdftitle={Real-time image stitching for automotive 360º vision systems},
+pdfauthor={Pujol Mir\'o, Alba},
+%pdfsubject={},
+%pdfkeywords={},
+colorlinks,
+linkcolor=black,
+citecolor=black,
+urlcolor=blue,
+unicode=false
+}
+
+\usepackage[T1]{fontenc}
+%\usepackage[a4paper,left=3cm,right=2.5cm]{geometry}
+\usepackage[a4paper,left=2.8cm,right=2.8cm,top=2.8cm,bottom=2.8cm]{geometry}
+
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+%ESTIL HEADERS
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[C]{}
+\fancyhead[RO]{\footnotesize\bfseries}
+\fancyhead[LE]{\footnotesize\bfseries}
+\fancyhead[LO,RE]{}
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[LE,RO]{\thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+%\usepackage{etoolbox, tocloft}
+%\preto\figure{%
+%  \ifnum\value{figure}=0\addtocontents{lof}{{\bfseries Chapter \thechapter\vskip10pt}}\fi
+%}
+
+\setcounter{secnumdepth}{4} 
+\graphicspath{{../figs/}}
+
+%Include degree symbol in plain text
+\usepackage{gensymb}
+
+
+%Notes on the page (toggle last lines)
+\usepackage[colorinlistoftodos]{todonotes}
+\setlength{\marginparwidth}{2cm}
+\newcommand{\mytodo}[1]{\todo[size=\footnotesize]{#1}}
+
+%\usepackage{biblatex}
+\usepackage{enumitem}
+
+\usepackage{flafter}
+\usepackage{multirow}
+\newcolumntype{M}[1]{>{\arraybackslash}p{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+\usepackage{pbox}
+\usepackage[gen]{eurosym}
+%\newcommand{\euro}{euroWARNING}
+
+\lstdefinestyle{tt}{
+breakatwhitespace=true,
+breaklines     = true,
+  frame=top,frame=bottom,
+  basicstyle=\small\normalfont\sffamily,    % the size of the fonts that are used for the code
+   stepnumber=1,
+   numbersep=10pt,                     % how far the line-numbers are from the code
+   numbers=left,
+   numberstyle=\tiny\color{gray},
+  tabsize=2,                              % tab size in blank spaces                     %
+  breaklines=true,                        % sets automatic line breaking
+  captionpos=t,                           % sets the caption-position to top
+    showspaces=false,           % Leerzeichen anzeigen ?
+  showtabs=false,             % Tabs anzeigen ?
+  xleftmargin=17pt,
+  framexleftmargin=17pt,
+  framexrightmargin=17pt,
+  framexbottommargin=5pt,
+  framextopmargin=5pt,
+  showstringspaces=false
+ }
+\DeclareCaptionFormat{listing}{#1#2#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt, font={sf}}
+
+\usepackage{adjustbox}

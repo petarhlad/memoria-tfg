@@ -1,0 +1,126 @@
+\documentclass[12pt,a4paper,twoside,openright]{book}
+
+\input{config/config.tex}
+\usepackage[backend=biber, sorting=none]{biblatex}
+\addbibresource{parts/bibliography.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newcommand{\titol}{Disseny i implementació d'un sistema de cobrament contactless en un expenedor atomàtic}
+\newcommand{\shortitol}{Short title}
+\newcommand{\autor}{Petar Hlad Colic}
+\renewcommand{\cleardoublepage}{}
+
+% PÀGINA INICIAL
+\frontmatter
+%\pagenumbering{Roman}
+\begin{titlepage}
+   	\includegraphics[scale=1]{images/logoUPC.jpg}
+   	\hfill
+   	\includegraphics[scale=1]{images/logoETSETB.jpg}\\
+
+   	\begin{center}
+   	\vspace{1em}
+   	\LARGE\textbf{\MakeUppercase{\titol}} \\
+   	\vspace{2em}
+   	\large\textit{\textbf{Treball de Final de Grau}}\\
+   	\large\textit{\textbf{Presentat a}}\\
+   	\vspace{0.5em}
+   	\Large\textbf{Escola Tècnica d'Enginyeria de Telecomunicació de Barcelona}\\
+   	\vspace{0.5em}
+   	\Large\textbf{Universitat Politècnica de Catalunya}\\
+   	\vspace{1em}
+   	\large\textit{\textbf{per}}\\
+   	\LARGE\textbf{\autor}\\
+   	\vspace{2em}
+   	\large\textit{\textbf{En requeriment dels}}\\
+   	\large\textit{\textbf{estudis del grau en}}\\
+   	\vspace{0.5em}
+   	\Large\textbf{Ciències i Tecnologies de la Telecomunicació}\\
+   	\vspace{4em}
+   	\Large\textbf{Tutor: Marcel Fernández Muñoz}\\
+   	\vspace{3em}
+   	\large\textbf{Barcelona, Setembre 2016}\\
+   	\end{center}
+\end{titlepage} 
+%\pagestyle{plain}   
+\newpage{\cleardoublepage}
+
+%ABSTRACT
+%\thispagestyle{plain}
+%\addcontentsline{toc}{section}{Abstract}
+\input{parts/abstract}
+\newpage{\cleardoublepage}
+
+%% Discomment for "thanks" page.
+%\thispagestyle{plain}
+\input{parts/thanks}
+\newpage{\cleardoublepage}
+
+%% Acknowledgements
+%\thispagestyle{plain}
+%\addcontentsline{toc}{section}{Acknowledgements}
+\input{parts/acknowledgements}
+\newpage{\cleardoublepage}
+
+{\tableofcontents
+\newpage{\cleardoublepage}
+
+% To force the figures to appear:
+%\setcounter{tocdepth}{2}
+%\addcontentsline{toc}{section}{List of Figures}
+\setcounter{tocdepth}{2}
+\listoffigures
+\newpage{\cleardoublepage}
+
+%\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+\newpage{\cleardoublepage}
+
+\thispagestyle{plain}
+%\addcontentsline{toc}{section}{Nomenclature}
+\printnomenclature
+\newpage{\cleardoublepage}
+
+\clearpage
+\pagestyle{fancy}
+\setlength{\parskip}{3mm plus1mm minus1.5mm}
+%\thispagestyle{empty}
+%\pagenumbering{arabic}
+\mainmatter
+\input{parts/intro}
+\newpage{\cleardoublepage}
+\input{parts/requirements}
+\newpage{\cleardoublepage}
+\input{parts/stateoftheart}
+\newpage{\cleardoublepage}
+%\input{parts/methodology}
+%\newpage{\cleardoublepage}
+%\input{parts/results2}
+%\newpage{\cleardoublepage}
+%\input{parts/budget}
+%\newpage{\cleardoublepage}
+%\input{parts/conclusions}
+%\newpage{\cleardoublepage}
+\printbibliography
+\cleardoublepage
+\newpage
+\appendix
+\clearpage
+\addcontentsline{toc}{chapter}{Appendices}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+%\input{appendix/appendix_gantt}
+%\newpage{\cleardoublepage}
+%\input{appendix/appendix_budget}
+%\newpage{\cleardoublepage}
+%\input{appendix/appendix_documentation}
+%\newpage{\cleardoublepage}
+%\input{appendix/appendix_video}
+%\newpage{\cleardoublepage}
+\setcounter{tocdepth}{2}
+
+%\input{appendix/appendix_blender}
+
+
+
+
+\end{document}

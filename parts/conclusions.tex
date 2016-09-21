@@ -1,0 +1,57 @@
+\chapter{Conclusions and future work}
+
+This project has described the procedure followed to obtain an specific image stitching algorithm. This algorithm had to merge the image from four cameras located around a bus in a single 360\degree view image. The work described in this project has been done in a multidisciplinary UPC team working in a project commissioned by the Arcol company.
+
+First of all, all the requirements and specifications inherited from the Arcol project have been stated. In basis on these requirements, a research in the current stitching methods has been done, including both commercial systems and high-level algorithms.
+
+The next part included in this project have shown the used methods in the steps inside this TFG scope. From the four different stitching steps --undistortion, registration, warping and blending--, only warping have been fully developed in this project. Table~\ref{table:mywork} shows each step internal tasks and its final status.
+
+\begin{table}[H]
+\begin{tabular}{l l l}
+
+\emph{Stitching step} & \emph{Internal task} & \emph{Status} \\
+\hline\hline
+\multirow{2}{*}{Undistortion} &Search and test undistortion algorithms& Done by another team member\\
+&Apply the final algorithm & Done by the project author \\
+\hline
+\multirow{2}{*}{Registering} &Automatic registering& Not done\\
+&Manual registering&Done by the project author\\
+\hline
+\multirow{2}{*}{Warping} &Search and test warping algorithms&  Done by the project author \\
+&Apply the final algorithm & Done by the project author \\
+\hline
+\multirow{3}{*}{Blending} &Apply provisional algorithm &Done by the project author \\
+&Search and test blending algorithm& Not done\\
+&Apply the final algorithm &Not done \\
+\hline
+\multirow{3}{*}{Unghosting} &Segment above ground objects &Not done \\
+&Define an algorithm& Not done\\
+&Apply the algorithm to the stitching &Not done \\
+\hline
+\end{tabular}
+\caption{Internal tasks status}
+\label{table:mywork}
+\end{table}
+
+Finally, the last part of this project shows the results obtained in the warping process. It can be extracted from the results that the developed algorithm beats the state-of-the-art algorithms for this specific application. As it can be seen in Chapter~\ref{chapter:results}, the \emph{Homography merging} algorithm developed in this project obtains better results than simple homography in this specific application.
+
+Regarding to the initial goals of this project, the results obtained in each point can be summed up as follows:
+\vspace{-1em}
+\begin{description}[font=\normalfont\textsl]\itemsep2pt \parskip1pt \parsep0pt
+\item [Representative points automatic detection.] The automatic key points detection has been left outside this project scope, and has been left to a future development. 
+\item [Estimate the warping parameters. ]The warping parameters and warping algorithm had been estimated successfully.
+\item [Blending the results on the final stitching. ]Blending algorithms have been tested and the feathering selected offers an acceptable performance for the project.
+\item [Follow the requirements stated by the Arcol project. ]Regarding the Arcol specifications, this project is fully adapted to be used with the specific hardware and software. Moreover, the land lines discontinuity has been fully fulfilled. Exposure compensation and avoiding host images has been left to the Arcol project future development.
+\vspace{-1em}
+\end{description}
+
+The overall project assessment is that, although not completely fulfilling all the goals stated at this project beginning, the results obtained in the developed parts are fully satisfactory. At the project start, the warping process has stated to be a trivial part, by simply applying the homography method. However, the development has arose many issues a priori not taken into account. These difficulties had recommended a change in the project direction, focusing on obtaining a more precise warping algorithm. This development sprung good results --and many discarded algorithms-- and establish a base-line for the future development.
+
+This project had left the development in a solid stage, with several work strands to be followed. First of all, an automatic registration algorithm can be implemented on the final product. This algorithm should automatically detect the chessboard corners and automatically do the key points registration. Another opened work strand is the definitive blending algorithm, directly bounded up with the above ground object treatment.  In this part, an algorithm has to be defined to manage this objects and obtain the minimum image distortion.
+
+
+
+
+
+
+

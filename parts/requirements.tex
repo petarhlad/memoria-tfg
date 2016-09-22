@@ -1,46 +1,66 @@
-\nomenclature{SoC}{System-on-Chip}
-\nomenclature{OS}{Operating system}
-\chapter{Requirements and specifications}\label{chapter:requirements}
+\chapter{Requerements i especificacions}\label{chapter:requeriments}
 
-This project goals include following the requirements stated by the Arcol company to the 360\degree vision system development. In this chapter both the software and hardware details are stated. The final system will be installed on the client bus using custom hardware. Thus, the designed software will have to adapt to the designed hardware constraints. Moreover, this Chapter also describes the requirements stated by the Arcol company to the final product.
+L'objectiu del projecte és dissenyar un sistema que es pugui integrar en expenedors automàtics existents i permeti la compra de begudes sense necessitat de fer ús de diners en efectiu en el moment de la compra.
 
-\section{Hardware  and software specifications}
-The final hardware consists on 4-6 cameras with the corresponding fisheye lenses, a board with a CPU and a FPGA, a TFT display and adapters set to interconnect the different devices to the board. The simplified hardware diagram is the following:
+\section{Requeriments generals de la solució}
 
-\begin{figure}[H]
-\includegraphics[scale=0.6]{images/hardwareDigram}
-\caption{Arcol project hardware diagram}
-\label{fig:hardwareDiag}
-\end{figure}
+La solució no pot empitjorar les prestacions que tenia l'expenedor automàtic en l'estat original. Només n'ha de millorar.
 
-The lenses used (Yuntai-optical  YT-5547-A1) have  178\degree (H) / 140\degree (V) viewing angle. The sensors (PixelPlus PH1100K) have an 1312$\times$816 effective resolution and provide the data in Bayer pattern. For each pixel only one color is provided, following the pattern shown in Figure~\ref{fig:bayer}. To obtain the full $M\times N$ image the color pixels are interpolated from its neighbours.
+En cas de necessitat, s'ha de poder retrocedir en la configuració de l'expenedor automàtic i deixar-lo en l'estat original.
 
-\begin{figure}
-\center
-\includegraphics[scale=0.4]{images/bayer}
-\caption{Camera sensor Bayer pattern. \cite{siliconimaging}}
-\label{fig:bayer}
-\end{figure}
+El sistema ha de ser prou segur per evitar frau o robatoris de diners.
 
-This Bayer pattern data is stored in an specific RAM location by the driver and ready to be accessed by the software.  The evaluation board used in this project has an 8Mb RAM (Random Acces Memory). This memory is split between the OS (Operating system) kernel, the camera drivers and the FPGA. 
-
-The board used (Xilinx Zynq-7000) has an ZC702 SoC (System-on-Chip) with two ARM cores and an FPGA,  1GB RAM DDR2 and a 16MB flash drive. Additionally, it has two FMC connectors used as camera input and display output with the AHA developed drivers.
-
-Although this system can capture data from 6 cameras, only 4 cameras will be used in this TFG project. The remaining 2 cameras are reserved for future implementations --i.e. articulated buses.
-
-All the developed software will not run directly on the Zynq board. Instead, an abstraction layer with a Linux kernel system will be installed. The software will run in the Linux user layer, and proper drivers to access the raw camera data and the FPGA reserved memory will be provided. 
-
-The Linux OS will have OpenCV and Boost libraries installed. Thus, the software can use both libraries. Moreover, critical real-time and high parallelizable functions can be implemented on FPGA.
-
-\section{Required features}\label{sec:algorithm}
-Using the specified hardware/software combination stated before a stitching system will be developed. The resulting composite image must have the following properties:
+Per assolir aquests requeriments el projecte es dividirà en tres parts:
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
 \vspace{-1em}
-\begin{description}[font=\normalfont\textsl]\itemsep2pt \parskip1pt \parsep0pt
-\item [Non-discontinuities on ground lines --i.e. lane lanes.] The ground lines must neither be broken nor change its direction between cameras.
-\item [Exposure compensation.] Perform a light correction between cameras.
-\item [Avoid double-images or ghost images.] Objects located above ground --i.e. people--, cannot be occluded or seen double in the overlapped areas.
+\parskip1pt \parsep0pt
+\item [Aplicació de Servidor] És el sistema central de la solució. Serà la part que gestionarà les compres, transaccions monetàries, usuaris.
+\item [Aplicació de Client] És el sistema que controlarà directament l'expenedor. Quan l'usuari s'identifiqui i faci una sel·lecció, l'aplicació es comunicarà amb el sistema central perquè autoritzi la compra i pugui fer que l'expenedor serveixi una beguda.
+\item [Implementació i integració del hardware] És tota la part del projecte que tracta la part física del projecte. En altres paraules, la integració del dispositiu que contindrà l'aplicació de client, el/s dispositiu/s que servira/n per identificar l'usuari i tots els circuits elèctrics per controlar l'expenedor i el seu estat. 
+\vspace{-1em}
 \end{description}
-\vspace{-1em}
-This project will focus on the warping process. Thus, only the first constraint will be taken into account.
 
-Regarding the calibration step, there is a reasonably freedom to select the calibration pattern. However, this system has to be user friendly without decreasing the software performance. 
+Un cop dividit el projecte en tres blocs, perquè la solució sigui prou segura contra fraus, es proposa que el sistema sigui un sistema de prepagament on el saldo de cada usuari l'emmagatzema i gestiona el sistema central. També es proposa que l'usuari s'identifiqui mitjançant una etiqueta NFC.
+
+\section{Aplicació de Servidor}
+Per tal de tenir una solució que compleixi els requeriments generals, es proposen una sèrie de requisits específics per a l'aplicació de servidor:
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+\item[Gestió d'expenedors] Ha de tenir control sobre els expenedors. Ha de gestionar quin producte tindrà l'expenedor a cada carril i a quin preu. Ha de poder deshabilitar la venda d'un cert carril. Ha de poder visualitzar l'estat en el que es troba un expenedor (s'ha quedat sense monedes per donar canvi, s'ha avariat, s'ha quedat sense producte ...).
+\item[Gestió d'usuaris] Ha de poder crear nous usuaris, eliminar-ne, modificar-ne les dades. També ha de poder identificar un usuari a partir d'algun identificador amb què aquest s'identifica quan fa ús d'un expenedor.
+\item[Gestió del saldo disponible] Ha de control·lar el saldo disponible del que disposa cada usuari. L'ha de poder consultar, modificar-lo quan hi ha un pagament o una recàrrega de saldo. 
+\item[Gestió de les compres] Ha d'autoritzar la compra que fa un usuari tenint en compte el seu saldo disponible i la disponibilitat del producte a l'expenedor.
+\item[Seguretat en les transaccions] El sistema ha de ser segur en termes de transaccions de diners i rècarregs de saldo per compra. S'han d'evitar suplantacions d'identitat, intrusions en el sistema, fraus i demés posibles accions que perjudiquin al propietari de l'expenedor o als usuaris.
+\item[Detecció i gestió d'incidencies] En sistemes que involucren parts mecàniques, elèctriques, i parts que es comuniquen per xarxa, no és tan extrany que en certs moments les coses no funcionin com haurien de funcionar. Així el sistema hauria de ser capaç de detectar la gran part d'incidències produides per errors de comunicació o fallades en l'expenedor i solucionar-les en la mesura que sigui possible.
+\vspace{-1em}
+\end{description}
+
+\section{Aplicació de client}
+De la mateixa manera que amb l'aplicació de servidor, es proposen un seguit de requeriments específics per l'aplicació de client:
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+\item[Control sobre l'expenedor] Ha de poder controlar els circuits de l'expenedor per exendre llaunes. També ha de poder analitzar els paràmetres dels circuits per a poder preveure la quantitat de producte restant que conté l'expenedor i a més detectar i evitar fallades.
+\item[Comunicació amb el sistema central] S'ha de comunicar amb el sistema central per a recollir la informació necessaria per funcionar i per a poder realitzar les vendes. També ha de comunicar al servidor la informació sobre l'estat de l'expenedor.
+\item[Interfície fàcil d'usar] L'ús de l'aplicació de cara a l'usuari es farà a través d'una interfície gràfica d'usuari que ha de ser senzilla d'utilitzar de la mateixa manera que ho és un expenedor automàtic usual.
+\item[Seguretat en les comunicacions] Les comunicacions han de tenir un mecanisme per evitar intents de frau i demés accions perjudicials per al propietari de l'expenedor i altres usuaris.
+\vspace{-1em}
+\end{description}
+
+\section{Implementació del Hardware}
+Tenint en compte els requisits generals de la solució i els requisits proposats per a l'aplicació de client, es proposen un seguit de requeriments específics per a la implementació del hardware dins l'expenedor:
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+\item[Reversibilitat de la integració] Un cop integrat el sistema, en cas de necessitat, s'ha de poder extreure el hardware i deixar l'expenedor en l'estat original. Això vol dir que no es pot alterar irreversiblement el cablejat de l'expenedor.
+\item[Volum reduït] No pot ocupar molt espai. Ha de caber dins de la porta de l'expenedor.
+\item[Implementació modular] Ha de ser prou facil de posar i treure de l'expenedor. Fàcil de reparar i reposar blocs defectuosos.
+\item[No interferir amb el funcionament mecànic de l'expenedor] La implementació no ha d'interferir en el funcionament mecànic usual que té un expenedor com són l'obertura de l'expenedor per recollir les monedes o reposar producte.
+\item[Evitar creuament amb una compra amb monedes] Es pot donar el cas que es vulgui efectuar una compra sense efectiu i s'hagin introduït monedes a l'expenedor al mateix temps. Ha d'evitar que es produeixin problemes per aquest creuament.
+\item[Aïllament físic amb l'exterior] Ha d'estar físicament de l'exterior per protegir el sistema i evitar possibles intents de manipulació.
+\item[Interfície d'usuari] Ha de tenir una interfície de manera que l'usuari pugui visualitzar la informació que dóna l'aplicació de client i també alguna manera d'introduir la seva selecció.
+\item[Lector NFC] Ha d'incloure un lector NFC per a la identificació dels usuaris.
+\vspace{-1em}
+\end{description}
+

@@ -2026,34 +2026,6 @@
     <bcf:datasource type="file" datatype="bibtex">parts/bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="7">siliconimaging</bcf:citekey>
-    <bcf:citekey order="8">siliconimaging</bcf:citekey>
-    <bcf:citekey order="9">nissan</bcf:citekey>
-    <bcf:citekey order="10">calibration</bcf:citekey>
-    <bcf:citekey order="11">totnissan</bcf:citekey>
-    <bcf:citekey order="12">videonissan</bcf:citekey>
-    <bcf:citekey order="13">videonissan</bcf:citekey>
-    <bcf:citekey order="14">infiniti</bcf:citekey>
-    <bcf:citekey order="15">calibration</bcf:citekey>
-    <bcf:citekey order="16">videoaudi</bcf:citekey>
-    <bcf:citekey order="17">videoaudi</bcf:citekey>
-    <bcf:citekey order="18">videoaudi</bcf:citekey>
-    <bcf:citekey order="19">touareg</bcf:citekey>
-    <bcf:citekey order="20">fujitsu</bcf:citekey>
-    <bcf:citekey order="21">fujitsu</bcf:citekey>
-    <bcf:citekey order="22">fujitsu</bcf:citekey>
-    <bcf:citekey order="23">landrover</bcf:citekey>
-    <bcf:citekey order="24">videolandrover</bcf:citekey>
-    <bcf:citekey order="25">videolandrover</bcf:citekey>
-    <bcf:citekey order="26">opencvpipeline</bcf:citekey>
-    <bcf:citekey order="27">tongji</bcf:citekey>
-    <bcf:citekey order="28">tongji</bcf:citekey>
-    <bcf:citekey order="29">szeliski</bcf:citekey>
-    <bcf:citekey order="30">mls</bcf:citekey>
-    <bcf:citekey order="31">imagemagick</bcf:citekey>
-    <bcf:citekey order="32">imagemagick</bcf:citekey>
-    <bcf:citekey order="33">feathering</bcf:citekey>
-    <bcf:citekey order="34">multiband</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none/global" type="entry" sortscheme="none" sortnamekeyscheme="global">
   <bcf:sorting>

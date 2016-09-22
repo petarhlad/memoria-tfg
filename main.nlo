@@ -1,7 +1,0 @@
-\nomenclatureentry{aSoC@[{SoC}]\begingroup System-on-Chip\nomeqref {1.0}|nompageref}{4}
-\nomenclatureentry{aOS@[{OS}]\begingroup Operating system\nomeqref {1.0}|nompageref}{4}
-\nomenclatureentry{aCPU@[{CPU}]\begingroup Central Processing Unit\nomeqref {3.0}|nompageref}{6}
-\nomenclatureentry{aFPGA@[{FPGA}]\begingroup Field Programmable Gate Array\nomeqref {3.0}|nompageref}{6}
-\nomenclatureentry{aSIFT@[{SIFT}]\begingroup Scale-Invariant Feature transform\nomeqref {3.0}|nompageref}{6}
-\nomenclatureentry{aCV@[{CV}]\begingroup Computer Vision\nomeqref {3.0}|nompageref}{6}
-\nomenclatureentry{aMLS@[{MLS}]\begingroup Moving Least Squares\nomeqref {3.0}|nompageref}{6}

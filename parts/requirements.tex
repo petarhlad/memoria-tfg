@@ -1,14 +1,15 @@
-\chapter{Requerements i especificacions}\label{chapter:requeriments}
+\chapter{Requeriments}\label{chapter:requeriments}
 
 L'objectiu del projecte és dissenyar un sistema que es pugui integrar en expenedors automàtics existents i permeti la compra de begudes sense necessitat de fer ús de diners en efectiu en el moment de la compra.
 
 \section{Requeriments generals de la solució}
-
-La solució no pot empitjorar les prestacions que tenia l'expenedor automàtic en l'estat original. Només n'ha de millorar.
-
-En cas de necessitat, s'ha de poder retrocedir en la configuració de l'expenedor automàtic i deixar-lo en l'estat original.
-
-El sistema ha de ser prou segur per evitar frau o robatoris de diners.
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+\item[Millors prestacions] La solució no pot empitjorar les prestacions que tenia l'expenedor automàtic en l'estat original. Només n'ha de millorar.
+\item[Reversibilitat] En cas de necessitat, s'ha de poder retrocedir en la configuració de l'expenedor automàtic i deixar-lo en l'estat original.
+\item[Seguretat] El sistema ha de ser prou segur per evitar frau o robatoris de diners.
+\end{description}
 
 Per assolir aquests requeriments el projecte es dividirà en tres parts:
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
@@ -22,7 +23,8 @@ Per assolir aquests requeriments el projecte es dividirà en tres parts:
 
 Un cop dividit el projecte en tres blocs, perquè la solució sigui prou segura contra fraus, es proposa que el sistema sigui un sistema de prepagament on el saldo de cada usuari l'emmagatzema i gestiona el sistema central. També es proposa que l'usuari s'identifiqui mitjançant una etiqueta NFC.
 
-\section{Aplicació de Servidor}
+\section{Requeriments específics}
+\subsection{Aplicació de Servidor}
 Per tal de tenir una solució que compleixi els requeriments generals, es proposen una sèrie de requisits específics per a l'aplicació de servidor:
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
 \vspace{-1em}
@@ -36,7 +38,7 @@ Per tal de tenir una solució que compleixi els requeriments generals, es propos
 \vspace{-1em}
 \end{description}
 
-\section{Aplicació de client}
+\subsection{Aplicació de client}
 De la mateixa manera que amb l'aplicació de servidor, es proposen un seguit de requeriments específics per l'aplicació de client:
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
 \vspace{-1em}
@@ -48,7 +50,7 @@ De la mateixa manera que amb l'aplicació de servidor, es proposen un seguit de 
 \vspace{-1em}
 \end{description}
 
-\section{Implementació del Hardware}
+\subsection{Implementació del Hardware}
 Tenint en compte els requisits generals de la solució i els requisits proposats per a l'aplicació de client, es proposen un seguit de requeriments específics per a la implementació del hardware dins l'expenedor:
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
 \vspace{-1em}

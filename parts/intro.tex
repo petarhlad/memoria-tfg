@@ -1,4 +1,4 @@
-\chapter{Introduction}
+\chapter{Introducció}
 
 Els expenedors automàtics de begudes fredes tenen una vida útil bastant llarga però les compres amb efectiu s'estan quedant enrere.
 
@@ -23,18 +23,19 @@ Cada dia el nombre de transaccions amb efectiu es van reduïnt. Els diners en ef
 \end{figure}
 
 \section{Objectius del projecte}
-The work done in the Image Processing Group started on February 2014. As stated on the Project Proposal and Workplan delivered on February 14th, this TFG work will end at June 30th, although the work in the ARCOL project will be still in development until December 2014.
 
-This project goals had been defined before the development began, and are stated in the Project Proposal and Workplan mentioned above. The goals of this project can be summed up in the following points:
+L'objectiu d'aquest projecte és dissenyar i desenvolupar un prototip per a un sistema \textit{cashless} que es pugui integrar dins d'expenedors automàtics existents. El projecte es centrarà en un model específic d'expenedor automàtic de begudes fredes (Dixie-Narco DNCB 386) perquè és l'expenedor que hi ha disponible per al desenvolupament.
+
+Els principals objectius es poden resumir en els següents punts:
+
 \vspace{-0.5em}
 \begin{description}[font=\normalfont\textsl]
-\item [Representative points automatic detection.] To perform the stitching a reference points set had to be highlighted on the image. One of this project goals is to define this points and the model shown to each camera on the calibration step.
-\item [Estimate the warping parameters. ] Study the most suitable transformation and the parameters needed to deform the input images to obtain the output stitched image.
-\item [Blending the results on the final stitching. ] Define an algorithm to merge the warped images on the final composition.
-\item [Follow the requirements stated by the Arcol project. ]All the procedures stated before have to be done according with the Arcol UPC project requirements. This requirements and specifications can be found in Chapter~\ref{chapter:requirements}. 
+\item [Dissenyar i desenvolupar l'aplicació de servidor. ] El sistema de la solució serà un sistema centralitzat. Tot es gestionarà des d'un mateix lloc, i aquest serà l'aplicació de servidor.
+\item [Dissenyar i desenvolupar l'aplicació de client. ] Per tal de poder controlar l'expenedor automàtic i comunicar-se amb l'aplicació de servidor, és necessaria l'aplicació de client.
+\item [Dissenyar  Desenvolupar el sistema de hardware. ] Per tal de que l'aplicació de client pugui controlar l'expenedor, és necessari el sistema de hardware que farà d'interfície entre l'aplicació i els circuits de l'expenedor.
 \end{description}
 
-The work done in this five months has been focused on developing a proper warping algorithm for this specific environment, taking into account all the technical an logistic issues. The specific tasks that had been included in  this project scope are explained in Chapter~\ref{chapter:methodology}.
+La feina feta durant aquests mesos s'ha centrat en desenvolupar el codi de les aplicacions i en desenvolupar el desplegament de hardware que s'integrarà a l'expenedor.
 
 \section{Planificació del temps}
 

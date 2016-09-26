@@ -3,6 +3,7 @@
 \input{config/config.tex}
 \usepackage[backend=biber, sorting=none]{biblatex}
 \addbibresource{parts/bibliography.bib}
+\usepackage{pdfpages}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \newcommand{\titol}{Prototip d'un sistema \textit{cashless} sobre expenedors automàtics existents}
@@ -114,8 +115,8 @@
 \clearpage
 \addcontentsline{toc}{chapter}{Appendices}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
-%\input{appendix/appendix_gantt}
-%\newpage{\cleardoublepage}
+\input{appendix/appendix_gantt}
+\newpage{\cleardoublepage}
 %\input{appendix/appendix_budget}
 %\newpage{\cleardoublepage}
 %\input{appendix/appendix_documentation}

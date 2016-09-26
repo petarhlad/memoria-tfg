@@ -23,6 +23,13 @@ Un rectificador d'alta impedància connectat a un opto-acoblador per separar els
 
 Per verificar que la venda no ha quedat deshabilitada, mesurarem la tensió al node comú del relé de by-pass amb el mateix circuit anterior.
 
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\textwidth]{images/vender_electrical_complete}
+\caption{Esquema elèctric proposat de l'expenedor}
+\label{fig:vender_electrical_complete}
+\end{figure}
+
 Tot i que pel funcionament del nostre sistema no és gaire rellevamt, també mesurarem la tensió a la làmpada de \textit{canvi exacte} per poder notificar al servidor que l'expenedor gairebé s'ha quedat sense canvi.
 
 \section{Components}
@@ -37,6 +44,13 @@ Per a poder accionar els circuits que accionen els motors de l'expenedor des de 
 RPi necessitarà una alimentació de 5V i 1A.
 La pantallà tàctil necessita una alimentació de 5V i 1A.
 La placa de relés necessita una alimentació de 12V.
+
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\textwidth]{images/block_diagram}
+\caption{Diagrama de bloc de la unitat de test}
+\label{fig:block_diagram}
+\end{figure}
 
 \section{Unitat de prova}
 Per tal de poder fer proves amb el sistema prèvies a la integració final, s'ha desenvolupat una unitat de test que consisteix en una capsa de metacrilat que conté tots els components fixats a dins i interconnectats de manera que sigui fàcil de transportar.
@@ -54,7 +68,9 @@ Aquesta placa té uns pins d'entrada on hi van conectats les sortides dels relé
 
 També té uns polsadors interruptors que són per a simular l'estat de les làmpades dels botons de selecció, que estan connectats als pins de sortida de la placa que aniran connectats als pins d'entrada de la RPi.
 
-
-(Esquema de la placa de sensing)
-(Esquema de la unitat de test)
-
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\textwidth]{images/demonstrator_diagram}
+\caption{Diagrama de bloc de la unitat de test}
+\label{fig:demonstrator_diagram}
+\end{figure}

@@ -14,11 +14,16 @@ Per verificar que el carril no està buit i hi queda producte per vendre, es pot
 
 Un rectificador d'alta impedància connectat a un opto-acoblador per separar els circuits de l'expenedor dels circuits del nostre hardware.
 
-(Esquema elèctric del circuit de sensing)
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\textwidth]{images/sensing}
+\caption{Esquema elèctric del circuit de sensing}
+\label{fig:sensing_board}
+\end{figure}
 
 Per verificar que la venda no ha quedat deshabilitada, mesurarem la tensió al node comú del relé de by-pass amb el mateix circuit anterior.
 
-Tot i que pel funcionament del nostre sistema no és gaire rellevamt, també mesurarem la tensió a la làmpada de "canvi exacte" per poder notificar al servidor que l'expenedor gairebé s'ha quedat sense canvi.
+Tot i que pel funcionament del nostre sistema no és gaire rellevamt, també mesurarem la tensió a la làmpada de \textit{canvi exacte} per poder notificar al servidor que l'expenedor gairebé s'ha quedat sense canvi.
 
 \section{Components}
 Com a controlador central de l'expenedor es farà servir un ordinador de placa petita \textit{RaspberryPi 2 B} (a partir d'ara, RPi), ja que disposa de bastants pins d'entrada/sortida, se li pot instal·lar un sistema operatiu basat en linux (que fa molt més fàcil el disseny de l'aplicació de client), té connexió a internet, possibilitat de connectar-hi una pantalla per HDMI o bé una pantalla tàctil.
@@ -38,9 +43,17 @@ Per tal de poder fer proves amb el sistema prèvies a la integració final, s'ha
 
 A més, s'ha desenvolupat una placa de sensing a part per a la unitat de test ja que el sensing sobre alta tensió no té gaire sentit fer-lo si no és sobre l'expenedor.
 
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\textwidth]{images/sensing_demonstrator}
+\caption{Esquema elèctric del circuit de sensing de la unitat de test}
+\label{fig:sensing_demonstrator_board}
+\end{figure}
+
 Aquesta placa té uns pins d'entrada on hi van conectats les sortides dels relés i quan s'activa un relé s'encén un LED per poder visualitzar des de fora de la capsa quins relés estan activats.
 
 També té uns polsadors interruptors que són per a simular l'estat de les làmpades dels botons de selecció, que estan connectats als pins de sortida de la placa que aniran connectats als pins d'entrada de la RPi.
+
 
 (Esquema de la placa de sensing)
 (Esquema de la unitat de test)

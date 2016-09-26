@@ -1,0 +1,31 @@
+\chapter{Resultats}\label{chapter:resultats}
+\vspace{-0.5cm}
+En aquest capítol exposem els resultats del disseny i el desenvolupament del sistema sencer.
+
+\section{Aplicació de servidor}
+L'aplicació de servidor és la que més s'ha trigat en dissenyar i desenvolupar perquè el disseny de l'aplicació de client depen directament de la de servidor.
+
+L'aplicació funciona com s'esperava.
+
+A través de la interfície d'administració es poden fer fàcilment les gestions necessàries com són: afegir usuaris nous, afegir expenedors nous, gestionar els carrils dels expenedors ..., tot el que es requeria de poder gestionar en remot.
+
+A la intefície d'administració només hi poden accedir els usuaris que tinguín permís d'administració, i això es pot gestionar des de la mateixa interfície.
+
+(Imatges de la interfície d'administració)
+
+
+\section{Aplicació de client}
+L'aplicació de client compleix els requeriments que s'han especificat.
+
+No obstant, té un problema amb el lector de targetes: si l'aplicació es tanca de manera inesperada (per exemple, degut a un error d'execució inesperat), es perd la comunicació amb el lector, i no es pot recuperar fins que no se li fa un reset de l'alimentació al lector. Això és un problema de la llibreria que utilitzem per controlar-lo (nfcpy), ja que amb altres llibreries que s'han provat això no passava.
+
+La interfície gràfica d'usuari no ha estat dissenyada per un dissenyador
+
+\section{Sistema de hardware}
+El hardware en conjunt està desenvolupat. No obstant, per temes de calendari de l'associació (durant el mes de març l'expenedor està inaccessible, durant l'agost i part de setembre el despatx està tancat), no s'han pogut fer totes les proves que es volia fer.
+
+Durant el quadrimestre s'han fet petites proves de concepte bàsiques amb èxit:
+\begin{enumerate}
+\item Provar d'expendre una llauna amb un relé activant-lo manualment.
+\item Provar d'expendre una llauna amb els relés activats per l'aplicació de client.
+\end{enumerate}

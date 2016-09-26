@@ -1,0 +1,22 @@
+\chapter{Disseny de hardware}\label{chapter:disseny de hardware}
+En aquest capítol comentarem tot el disseny del hardware que s'ha seguit per poder controlar l'expenedor automàtic assolint els requisits definits anteriorment.
+
+\section{Disseny elèctric}
+A partir de l'esquema elèctric simplificat de l'expenedor, la idea del nostre disseny elèctric és d'afegir un circuit paral·lel a la màquina de canvi i als botons de selecció i que pugui deshabilitar la màquina de canvi durant el transcurs d'una venda en el nostre sistema. 
+
+La idea, doncs, és afegir un relé que fa de commutador abans de la màquina de canvi que derivi el corrent cap.
+
+
+
+\section{Components}
+Com a controlador central de l'expenedor es farà servir un ordinador de placa petita \textit{RaspberryPi 2 B} (a partir d'ara, RPi), ja que disposa de bastants pins d'entrada/sortida, se li pot instal·lar un sistema operatiu basat en linux (que fa molt més fàcil el disseny de l'aplicació de client), té connexió a internet, possibilitat de connectar-hi una pantalla per HDMI o bé una pantalla tàctil.
+
+Per a la interfície d'usuari usarem la pantalla tàctil \textit{Raspberry Pi Touch 7"}.
+
+Per a poder accionar els circuits que accionen els motors de l'expenedor des de la RPi farem servir una placa de relés activats per nivell baix.
+
+
+
+RPi necessitarà una alimentació de 5V i 1A.
+La pantallà tàctil necessita una alimentació de 5V i 1A.
+La placa de relés necessita una alimentació de 12V.

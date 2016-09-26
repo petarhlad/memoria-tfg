@@ -1,0 +1,104 @@
+\chapter{Disseny de software}\label{chapter:disseny de software}
+
+En aquesta part es presenta el disseny de l'aplicació amb les decisions de disseny explicades.
+
+Per al projecte sencer s'ha escollit programar en llenguatge \emph{Python} perquè és molt senzill de programar i és molt més llegible.
+
+\section{Aplicació de servidor}
+Per a l'aplicació de servidor s'ha fet servir un \textit{framework} per a desenvolupar webs en Python anomenat Django.
+
+S'ha seguit el patró MVC (Model-Vista-Controlador).
+
+\subsection{Model de dades}
+Per a desenvolupar una aplicació web mínimament complexa, primer s'ha de començar dissenyant el model de dades.
+
+Cada \textit{model} en Django representa una taula a la base de dades.
+
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+
+\item[User] Cada usuari està associat a un \texttt{User} i contindrà les dades que l'identificaran com el seu nom, correu electrònic, nom d'usuari i contrassenya, DNI ...
+\item[Credit] Conté el saldo disponible de l'usuari i, per tant, està associat a un \texttt{User}, i cada \texttt{User} té associat com a molt un \texttt{Credit}. Està en una taula separada perquè està pensat perquè l'aplicació pugui ser integrada en una base de dades d'usuaris existent.
+\item[Card] Representa la targeta amb la què s'identificarà l'usuari. Per tant està associada a un usuari. Igual que les targetes de crèdit, un usuari pot tenir més d'una targeta associada.
+\item[Vender] Representa un expenedor. Conté la informació bàsica de l'expenedor (model, número de sèrie, localització geogràfica), i també la informació sobre el seu estat.
+\item[ApiKeyToken] Per a garantir un mínim de seguretat en les comunicacions, l'aplicació de client usarà un codi per a identificar l'expenedor des del qual s'està comunicant. Aquest identificador serà únic per a cada expenedor. \texttt{Vender} i \texttt{ApiKeyToken} estan en taules separades per raons d'implementació de codi d'autenticació en Django.
+\item[Column] Representa un carril d'un expenedor. Cada carril té un preu de venda i un tipus de producte. També pot estar actiu o inactiu, i també pot estar buit o ple.
+\item[Purchase] Cada cop que l'usuari fa una selecció i tot va bé (la informació proporcionada per realitzar la compra és correcta i l'usuari té suficient saldo disponbible) es crea una instància de \texttt{Purchase} que representa la compra que ha fet l'usuari amb la informació corresponent (targeta amb què s'ha comprat, producte, carril, preu, data i hora, identificador de la compra, i si ha estat pagada). L'identificador de la compra és un identificador aleatori que assigna l'aplicació de client per raons que comentarem més endavant. Tot i que \texttt{Column} ja conté la informació de carril, producte i preu, es guarda per separat ja que al llarg del temps aquests paràmetres podrien canviar.
+\item[Payment] Quan un \texttt{Purchase} ha estat creat, s'ha de procedir al pagament de la compra, per tant un pagament està associat directament a una compra. \texttt{Payment} representa l'acció de pagar la compra. Inclou el preu de la compra, la quantitat descomptada (si es fa descompte) i el preu final a pagar. També inclou l'usuari a qui se li ha de cobrar, el dia i hora i la informació per determinar si el pagament està pagat i és valid, o si l'han hagut de reemborsar.
+\item[RefundPetition] Quan un procés de compra es queda a mitges, o l'expenedor pateix una fallada tècnica, o per qualsevol altre motiu és necessari reemborsar l'import d'una compra a l'usuari, primer s'ha de crear una petició de reemborsament. És així perquè d'aquesta manera les peticions es poden generar de manera automàtica mentre que l'autorització de la petició es realitza amb més cura (un sistema més curós o bé amb supervisió humana). Conté l'identificador del pagament que es vol reemborsar, el sol·licitant (ja sigui un empleat o bé un expenedor de manera automàtica), la raó de la petició, l'hora i la data, i la informació per determinar si ha estat denegada o finalment s'ha realitzat el reemborsament.
+\item[Refund] Representa el reemborsament d'un pagament un cop la petició és acceptada. Així doncs conté l'entitat que ha autoritzat el reemborsament, la petició que ha estat autoritzada i l'hora i la data de l'autorització.
+\vspace{-1em}
+\end{description}
+
+\subsection{Controlador}
+El controlador és on es troba tota la lògica en si del sistema.
+
+En Django, quan es desenvolupa una aplicació de servidor que respon a peticions, la funció de controllador ho desenvolupen les classes que de l'API.
+
+Les següents són les classes que fan de control·lador i cadascuna respon a un tipus diferent de petició:
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+\item[GetUserDataFromCard] Retorna la informació de l'usuari (nom i saldo disponible) a partir de l'identificador de la seva targeta.
+\item[GetVenderColumns] Retorna la informació de cada carril de l'expenedor que l'ha demanat (tots els paràmetres que conté el model \texttt{Column}).
+\item[ProductPurchase] Quan l'usuari ha fet la selecció del producte, es comprova que el producte estigui disponible, que el producte del carril seleccionat coincideixi amb el producte que conté, que el preu també coincideixi i que el saldo disponible de l'usuari sigui suficient. Si tot és correcte, es crea una instància de \texttt{Purchase} i el seu \texttt{Payment} associat i se li descompta l'import de la compra al saldo de l'usuari. Finalment se li retorna una resposta de que tot ha anat bé a l'expenedor perquè serveixi una beguda o bé se li retorna una resposta d'error informant de què és el que ha anat malament.
+\item[RequestCancelPayment] Quan alguna cosa ha anat malament a la banda de l'expenedor (s'ha encallat el mecanisme, ha fallat la xarxa, ...) pot ser que s'hagi cobrat la compra a l'usuari i no s'hagi servit la beguda. És per això que cal un mecanisme per demanar reemborsament sota certes circumstàncies. Quan es rep una sol·licitud de reemborsament aquesta s'emmagatzema si fins el moment no existia cap altra sol·licitud associada al mateix pagament.
+\vspace{-1em}
+\end{description}
+
+\subsection{Vista}
+La vista en si és la informació que es pot visualitzar de la resposta d'una petició.
+En la nostra aplicació hi ha dos possibilitats d'origen de petició: des de l'aplicació de client, i des de la interfície d'administració.
+
+Django té per defecte implementada una interfície d'administració per gestionar manualment les dades de l'aplicació. Amb això ens estalviem haver de desenvolupar aplicacions d'intefície grafica d'usuari per tal de poder gestionar nous usuaris, incidencies, etcètera.
+
+Aleshores, la interfície d'administració és un tipus de vista, i la informació que retorna el controlador a l'aplicació de client és l'altre tipus de vista de l'aplicació.
+
+\section{Aplicació de client}
+Per a l'aplicació de client, com ha de tenir una interfície gràfica d'usuari, s'ha decidit utilitzar \texttt{PyQt4} que és una llibreria gràfica. Té integrada la part gràfica i també la comunicació entre fils d'execució.
+
+L'aplicació de client es divideix en 6 grans blocs diferenciables:
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+\item[comms] S'encarrega d'implementar la comunicació amb el servidor.
+\item[card\_reader] S'encarrega de controlar el lector de targetes. Cada cop que detecta una targeta avisa al fil d'execució principal juntament amb l'identificador de la targeta.
+\item[column\_controller] S'encarrega de controlar els mecanismes dels carrils de l'expenedor i de detectar les possibles fallades mecàniques.
+\item[db\_controller] S'encarrega de controlar la base de dades local. En aquesta base de dades s'emmagatzema la informació dels carrils i també la informació de compres fallides per les quals el servidor encara no ha confirmat la creació d'una petició de reemborsament.
+\item[graphic\_ui]: S'encarrega de crear la interfície gràfica d'usuari i de gestionar totes les accions de l'usuari i derivar-les cap el fil d'execució principal.
+\item[cocacolero]: S'encarrega d'instanciar, controlar i coordinar la resta de blocs. Aquest bloc es troba en el fil d'execució principal
+\vspace{-1em}
+\end{description}
+
+\subsection{Cas d'ús}
+A continuació s'exposa l'explicació del cas d'ús usual de l'aplicació per part de l'usuari.
+\begin{enumerate}
+\item L'usuari arriba i apropa la seva targeta al lector.
+\item L'usuari és correctament identificat i el seu nom i el seu saldo disponible apareixen per pantalla. Els botons de selecció dels productes disponibles queden habilitats.
+\item L'usuari fa la selecció pitjant amb el dit sobre el botó del producte que ha escollit
+\item L'usuari disposa de suficient saldo disponible i la compra s'efectua amb èxit. L'expenedor serveix la beguda, es deshabiliten els botons i finalitza el procés.
+\end{enumerate}
+
+Exposem el mateix cas d'ús des del punt de vista de l'aplicació.
+\begin{enumerate}
+\item \texttt{card\_reader} detecta una targeta i comunica l'identificador a \texttt{cocacolero}.
+\item \texttt{cocacolero} demana la informació de l'usuari associat a la targeta detectada a l'aplicació del servidor. El servidor l'identifica amb èxit i retorna la informació demanada (nom i saldo). \texttt{cocacolero} habilita els botons de \texttt{graphic\_ui} dels productes disponibles.
+\item Quan l'usuari fa la selecció, \texttt{graphic\_ui} comunica a \texttt{cocacolero} la selecció.
+\item \texttt{cocacolero} genera un identificador aleatori per a la compra, envia al servidor la petició de la compra. El servidor comprova que la informació és correcta i que l'usuari té suficient saldo. El servidor respon amb èxit. \texttt{cocacolero} comunica a \texttt{column\_controller} el carril que s'ha d'activar i aquest li respon amb èxit quan la beguda s'hagi servit. \texttt{cocacolero} deshabilita els botons de \texttt{graphic\_ui} i finalitza el procés.
+\end{enumerate}
+
+Ara exposem els casos d'ús quan alguna cosa no funciona com està previst:
+\begin{description}[font=\normalfont\textbf]\itemsep2pt 
+\vspace{-1em}
+\parskip1pt \parsep0pt
+\item[L'usuari no vol realitzar cap compra després d'identificar-se:] L'usuari pitja el botó \texttt{Log Out} i finalitza el procés.
+\item[L'usuari no s'ha identificat amb èxit:] S'ignora
+\item[Es detecta una targeta durant un procés de compra:] S'ignora
+\item[L'usuari fa una selecció per la qual no disposa de saldo suficient:] el servidor ho detecta i ho comunica a l'aplicació de client. L'aplicació descarta la compra i finalitza el procés.
+\item[La informació de la compra és incorrecta:] El mateix cas que el de saldo insuficient.
+\item[El servidor no pot processar la compra per qualsevol altre motiu:] El mateix cas que el de saldo insuficient.
+\item[El servidor no respon dins del termini establert:] S'anul·la el procés. S'emmagatzema la informació de la compra i s'envien peticions al servidor periodicament fins que el servidor crea la petició de reemborsament amb èxit o la descarta per qualsevol motiu.
+\item[L'aplicació detecta una fallada tècnica i no s'ha servit el producte:] El mateix cas que quan es perd la resposta del servidor.
+\vspace{-1em}
+\end{description}

@@ -32,22 +32,21 @@ La feina s'ha repartit en 6 blocs. La descripció detallada de cada bloc es trob
 \begin{ganttchart}[
 hgrid,
 bar/.append style={fill=blue!50},
-vgrid={*4{dotted},*1{dashed},*3{dotted},*1{dashed},*3{dotted},*1{dashed},*3{dotted},*1{dashed},*4{dotted},*1{dashed}},
-x unit=0.47cm,
+vgrid={*4{dotted},*1{dashed},*3{dotted},*1{dashed},*3{dotted},*1{dashed},*3{dotted},*1{dashed},*4{dotted},*1{dashed},*3{dotted},*1{dashed},*3{dotted},*1{dashed}} ,x unit=0.47cm,
 title height=1, 
-y unit title=0.6cm,
-y unit chart=0.8cm]{1}{22}
-\gantttitle{Project timeline in months/weeks}{22} \\
+y unit title=0.5cm,
+y unit chart=0.7cm]{1}{30}
+\gantttitle{Project timeline in months/weeks}{30} \\
 \gantttitle{FEBR}{4}
-\gantttitle{MARCH}{5}\gantttitle{APRIL}{4}\gantttitle{MAY}{4}\gantttitle{JUNE}{5} \\
+\gantttitle{MARCH}{5}\gantttitle{APRIL}{4}\gantttitle{MAY}{4}\gantttitle{JUNE}{5}\gantttitle{JULY}{4}\gantttitle{AUG.}{4} \\
 \gantttitle[title label node/.append style={below left=-8pt and -7pt}]{\footnotesize\textit{Week}\quad1}{1}
 \gantttitlelist
-{2,...,22}{1} \\ 
+{2,...,30}{1} \\ 
 \ganttbar{Training}{1}{6} \\
-\ganttbar{System Design}{5}{8}\\
-\ganttbar{System Development}{9}{17} \\ 
-\ganttbar{Test Unit Design}{18}{18}\\ 
-\ganttbar{Test Unit Development}{19}{20}\\
+\ganttbar{Sys. Des.}{5}{8}\\
+\ganttbar{Sys. Dev.}{9}{17} \\ 
+\ganttbar{Test Unit Des.}{18}{18}\\ 
+\ganttbar{Test Unit Dev.}{19}{20}\\
 \ganttbar{Writing}{21}{22}
 \end{ganttchart}
 \caption{Diagrama de Gantt del projecte}

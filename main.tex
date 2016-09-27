@@ -110,24 +110,34 @@
 \newpage{\cleardoublepage}
 \printbibliography
 \cleardoublepage
+
 \newpage
 \appendix
+\pretocmd{\chapter}{%
+  \clearpage
+  \pagenumbering{arabic}%
+  \renewcommand*{\thepage}{\thechapter\arabic{page}}%
+}{}{}
 \clearpage
-\addcontentsline{toc}{chapter}{Appendices}
+\addcontentsline{toc}{chapter}{Apèndixs}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \input{appendix/appendix_gantt}
 \newpage{\cleardoublepage}
 %\input{appendix/appendix_budget}
 %\newpage{\cleardoublepage}
-%\input{appendix/appendix_documentation}
-%\newpage{\cleardoublepage}
+\input{appendix/appendix_documentation}
+\newpage{\cleardoublepage}
 %\input{appendix/appendix_video}
 %\newpage{\cleardoublepage}
 \setcounter{tocdepth}{2}
 
 %\input{appendix/appendix_blender}
 
-
+%\newpage
+%\annex
+%\clearpage
+%\addcontentsline{toc}{chapter}{Anexes}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
 
 \end{document}

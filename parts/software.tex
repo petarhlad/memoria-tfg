@@ -5,7 +5,7 @@ En aquesta part es presenta el disseny de l'aplicació amb les decisions de diss
 Per al projecte sencer s'ha escollit programar en llenguatge \emph{Python} perquè és molt senzill de programar i és molt més llegible.
 
 \section{Aplicació de servidor}
-Per a l'aplicació de servidor s'ha fet servir un \textit{framework} per a desenvolupar webs en Python anomenat Django.
+Per a l'aplicació de servidor s'ha fet servir un \textit{framework} per a desenvolupar webs en Python anomenat Django\autocite{django-tutorial}.
 
 S'ha seguit el patró MVC (Model-Vista-Controlador).
 
@@ -34,7 +34,7 @@ Cada \textit{model} en Django representa una taula a la base de dades.
 \subsection{Controlador}
 El controlador és on es troba tota la lògica en si del sistema.
 
-En Django, quan es desenvolupa una aplicació de servidor que respon a peticions, la funció de controllador ho desenvolupen les classes que de l'API.
+En Django, quan es desenvolupa una aplicació de servidor que respon a peticions, la funció de controllador ho desenvolupen les classes que de l'API.\autocite{django-rest}
 
 Les següents són les classes que fan de control·lador i cadascuna respon a un tipus diferent de petició:
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
@@ -56,7 +56,9 @@ Django té per defecte implementada una interfície d'administració per gestion
 Aleshores, la interfície d'administració és un tipus de vista, i la informació que retorna el controlador a l'aplicació de client és l'altre tipus de vista de l'aplicació.
 
 \section{Aplicació de client}
-Per a l'aplicació de client, com ha de tenir una interfície gràfica d'usuari, s'ha decidit utilitzar \texttt{PyQt4} que és una llibreria gràfica. Té integrada la part gràfica i també la comunicació entre fils d'execució.
+Per a l'aplicació de client, com ha de tenir una interfície gràfica d'usuari, s'ha decidit utilitzar \texttt{PyQt4}\autocite{pyqt4-tutorial} que és una llibreria gràfica. Té integrada la part gràfica i també la comunicació entre fils d'execució.
+
+Per la comunicació amb el lector de targetes es farà servir la llibreria \texttt{nfcpy}.\autocite{nfcpy}
 
 L'aplicació de client es divideix en 6 grans blocs diferenciables:
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
@@ -102,3 +104,6 @@ Ara exposem els casos d'ús quan alguna cosa no funciona com està previst:
 \item[L'aplicació detecta una fallada tècnica i no s'ha servit el producte:] El mateix cas que quan es perd la resposta del servidor.
 \vspace{-1em}
 \end{description}
+
+\subsection{Comunicació amb servidor}
+Com s'ha comentat, l'aplicació de client s'ha de comunicar amb l'aplicació de servidor. Aquesta comunicació s'implementarà mitjançant peticions HTTP que és com es comuniquen normalment els nostres navegadors Web amb els servidors. Per a implementar aquesta comunicació s'utilitzarà la llibreria \texttt{requests}\autocite{python-rest} de \texttt{Python}.

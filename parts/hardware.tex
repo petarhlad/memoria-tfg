@@ -10,7 +10,7 @@ Els relés es connecten en serie de la mateixa manera que els botons de selecci�
 
 Per tal de poder controlar l'estat de l'expenedor per saber si no queda producte en algun carril o si la venda ha quedat deshabilitada per algun motiu, s'ha de poder verificar si hi ha tensió en certs punts del circuit.
 
-Per verificar que el carril no està buit i hi queda producte per vendre, es pot observar si la làmpada esta encesa mesurant la tensió que cau entre els seus borns. Això ho farem amb un circuit que hem trobat en un blog de projectes casolans i hem adaptat al nostre sistema:
+Per verificar que el carril no està buit i hi queda producte per vendre, es pot observar si la làmpada esta encesa mesurant la tensió que cau entre els seus borns. Això ho farem amb un circuit que hem trobat en un blog\autocite{sensing-circuit} de projectes casolans i hem adaptat al nostre sistema:
 
 Un rectificador d'alta impedància connectat a un opto-acoblador per separar els circuits de l'expenedor dels circuits del nostre hardware.
 
@@ -39,11 +39,12 @@ Per a la interfície d'usuari usarem la pantalla tàctil \textit{Raspberry Pi To
 
 Per a poder accionar els circuits que accionen els motors de l'expenedor des de la RPi farem servir una placa de relés activats per nivell baix.
 
+Per a llegir les targetes NFC s'utilitzarà un mòdul NFC PN532, connectat per un adaptador USB a la RPi. S'alimenta a 5V a través de l'adaptador USB.
 
-
-RPi necessitarà una alimentació de 5V i 1A.
+La RPi necessitarà una alimentació de 5V i 1A.
 La pantallà tàctil necessita una alimentació de 5V i 1A.
-La placa de relés necessita una alimentació de 12V.
+Els circuits dissenyats anteriorment s'alimenten a 5V.
+La placa de relés necessita una alimentació de 12V. Per tant necessitarem una font d'alimentació de 5V i 12V.
 
 \begin{figure}[H]
 \center

@@ -1,7 +1,7 @@
 \documentclass[12pt,a4paper,twoside,openright]{book}
 
 \input{config/config.tex}
-\usepackage[backend=bibtex, style=verbose-trad2]{biblatex}
+\usepackage[backend=bibtex, style=verbose]{biblatex}
 \bibliography{parts/bibliography.bib}
 \usepackage{pdfpages}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -43,9 +43,9 @@
    	\large\textbf{Barcelona, Setembre 2016}\\
    	\end{center}
 \end{titlepage} 
-%\pagestyle{plain}   
+%\pagestyle{plain}
+\newpage\null\thispagestyle{empty}\newpage
 \newpage{\cleardoublepage}
-
 %ABSTRACT
 %\thispagestyle{plain}
 %\addcontentsline{toc}{section}{Abstract}
@@ -54,29 +54,31 @@
 
 %% Discomment for "thanks" page.
 %\thispagestyle{plain}
-\input{parts/thanks}
-\newpage{\cleardoublepage}
+%\input{parts/thanks}
+%\newpage{\cleardoublepage}
 
 %% Acknowledgements
 %\thispagestyle{plain}
 %\addcontentsline{toc}{section}{Acknowledgements}
+\newpage\null\thispagestyle{empty}\newpage
 \input{parts/acknowledgements}
 \newpage{\cleardoublepage}
-
+\newpage\null\thispagestyle{empty}\newpage
 {\tableofcontents
 \newpage{\cleardoublepage}
 
 % To force the figures to appear:
 \setcounter{tocdepth}{2}
-\addcontentsline{toc}{section}{List of Figures}
+%\addcontentsline{toc}{section}{List of Figures}
 \setcounter{tocdepth}{2}
 \listoffigures
 \newpage{\cleardoublepage}
 
-\addcontentsline{toc}{section}{List of Tables}
+%\addcontentsline{toc}{section}{List of Tables}
+\newpage\null\thispagestyle{empty}\newpage
 \listoftables
 \newpage{\cleardoublepage}
-
+\newpage\null\thispagestyle{empty}\newpage
 %\thispagestyle{plain}
 %\addcontentsline{toc}{section}{Nomenclature}
 %\printnomenclature
@@ -96,21 +98,25 @@
 
 %\input{parts/stateoftheart}
 %\newpage{\cleardoublepage}
+\newpage\null\thispagestyle{empty}\newpage
 \input{parts/vender}
 \newpage{\cleardoublepage}
+\newpage\null\thispagestyle{empty}\newpage
 \input{parts/software}
+\newpage\null\thispagestyle{empty}\newpage
 \newpage{\cleardoublepage}
 \input{parts/hardware}
 \newpage{\cleardoublepage}
 \input{parts/results}
 \newpage{\cleardoublepage}
 \input{parts/budget}
+\newpage\null\thispagestyle{empty}\newpage
 \newpage{\cleardoublepage}
 \input{parts/conclusions}
+\newpage\null\thispagestyle{empty}\newpage
 \newpage{\cleardoublepage}
-
 \printbibliography
-
+\newpage\null\thispagestyle{empty}\newpage
 \cleardoublepage
 \newpage
 \appendix
@@ -123,6 +129,9 @@
 \addcontentsline{toc}{chapter}{Apèndixs}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \input{appendix/appendix_gantt}
+\newpage{\cleardoublepage}
+\input{appendix/appendix_uml}
+\newpage\null\thispagestyle{empty}\newpage
 \newpage{\cleardoublepage}
 \input{appendix/appendix_budget}
 \newpage{\cleardoublepage}

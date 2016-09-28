@@ -12,7 +12,7 @@ S'ha seguit el patró MVC (Model-Vista-Controlador).
 \subsection{Model de dades}
 Per a desenvolupar una aplicació web mínimament complexa, primer s'ha de començar dissenyant el model de dades.
 
-Cada \textit{model} en Django representa una taula a la base de dades.
+Cada \textit{model} en Django representa una taula a la base de dades. El diagrama UML del model de dades de l'aplicació es troba a l'Apèndix~\ref{app:uml}
 
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
 \vspace{-1em}
@@ -31,6 +31,7 @@ Cada \textit{model} en Django representa una taula a la base de dades.
 \vspace{-1em}
 \end{description}
 
+\newpage
 \subsection{Controlador}
 El controlador és on es troba tota la lògica en si del sistema.
 
@@ -55,6 +56,7 @@ Django té per defecte implementada una interfície d'administració per gestion
 
 Aleshores, la interfície d'administració és un tipus de vista, i la informació que retorna el controlador a l'aplicació de client és l'altre tipus de vista de l'aplicació.
 
+\newpage
 \section{Aplicació de client}
 Per a l'aplicació de client, com ha de tenir una interfície gràfica d'usuari, s'ha decidit utilitzar \texttt{PyQt4}\autocite{pyqt4-tutorial} que és una llibreria gràfica. Té integrada la part gràfica i també la comunicació entre fils d'execució.
 
@@ -68,8 +70,8 @@ L'aplicació de client es divideix en 6 grans blocs diferenciables:
 \item[card\_reader] S'encarrega de controlar el lector de targetes. Cada cop que detecta una targeta avisa al fil d'execució principal juntament amb l'identificador de la targeta.
 \item[column\_controller] S'encarrega de controlar els mecanismes dels carrils de l'expenedor i de detectar les possibles fallades mecàniques.
 \item[db\_controller] S'encarrega de controlar la base de dades local. En aquesta base de dades s'emmagatzema la informació dels carrils i també la informació de compres fallides per les quals el servidor encara no ha confirmat la creació d'una petició de reemborsament.
-\item[graphic\_ui]: S'encarrega de crear la interfície gràfica d'usuari i de gestionar totes les accions de l'usuari i derivar-les cap el fil d'execució principal.
-\item[cocacolero]: S'encarrega d'instanciar, controlar i coordinar la resta de blocs. Aquest bloc es troba en el fil d'execució principal
+\item[graphic\_ui] S'encarrega de crear la interfície gràfica d'usuari i de gestionar totes les accions de l'usuari i derivar-les cap el fil d'execució principal.
+\item[cocacolero]\footnote{\textbf{cocacolero} és el nom que rep la persona encarregada de la màquina expenedora del despatx de l'associació} S'encarrega d'instanciar, controlar i coordinar la resta de blocs. Aquest bloc es troba en el fil d'execució principal
 \vspace{-1em}
 \end{description}
 
@@ -82,6 +84,7 @@ A continuació s'exposa l'explicació del cas d'ús usual de l'aplicació per pa
 \item L'usuari disposa de suficient saldo disponible i la compra s'efectua amb èxit. L'expenedor serveix la beguda, es deshabiliten els botons i finalitza el procés.
 \end{enumerate}
 
+\newpage
 Exposem el mateix cas d'ús des del punt de vista de l'aplicació.
 \begin{enumerate}
 \item \texttt{card\_reader} detecta una targeta i comunica l'identificador a \texttt{cocacolero}.
@@ -92,7 +95,6 @@ Exposem el mateix cas d'ús des del punt de vista de l'aplicació.
 
 Ara exposem els casos d'ús quan alguna cosa no funciona com està previst:
 \begin{description}[font=\normalfont\textbf]\itemsep2pt 
-\vspace{-1em}
 \parskip1pt \parsep0pt
 \item[L'usuari no vol realitzar cap compra després d'identificar-se:] L'usuari pitja el botó \texttt{Log Out} i finalitza el procés.
 \item[L'usuari no s'ha identificat amb èxit:] S'ignora

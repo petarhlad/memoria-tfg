@@ -53,10 +53,10 @@
     <requires type="static">
       <file>blx-compat.def</file>
       <file>biblatex_legacy.def</file>
-      <file>verbose-trad2.bbx</file>
+      <file>verbose.bbx</file>
       <file>authortitle.bbx</file>
       <file>standard.bbx</file>
-      <file>verbose-trad2.cbx</file>
+      <file>verbose.cbx</file>
       <file>biblatex.cfg</file>
       <file>catalan.lbx</file>
     </requires>

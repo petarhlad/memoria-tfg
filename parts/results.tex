@@ -25,7 +25,7 @@ A la intefície d'administració només hi poden accedir els usuaris que tinguí
 		\label{fig:admin2}
 	\end{subfigure}
 	\caption{Captures de la interfície d'administració de l'aplicació de servidor}
-	\label{fig:intro-example}
+	\label{fig:admin-captures}
 \end{figure}
 
 \section{Aplicació de client}
@@ -40,18 +40,19 @@ La interfície gràfica d'usuari no ha estat dissenyada per un dissenyador
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/client_app1}
 		\caption{Interfície d'administració per crear usuaris}
-		\label{fig:admin1}
+		\label{fig:client-app1}
 	\end{subfigure}
 	\hspace{0.5cm}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/client_app2}
 		\caption{Interfície d'administració per gestionar els expenedors}
-		\label{fig:admin2}
+		\label{fig:client-app2}
 	\end{subfigure}
 	\caption{Captures de la interfície d'usuari de l'aplicació de client}
-	\label{fig:intro-example}
+	\label{fig:client-captures}
+	\vspace{-1em}
 \end{figure}
-
+\newpage
 \section{Sistema de hardware}
 El hardware en conjunt està desenvolupat. No obstant, per temes de calendari de l'associació (durant el mes de març l'expenedor està inaccessible, durant l'agost i part de setembre el despatx està tancat), no s'han pogut fer totes les proves que es volia fer.
 
@@ -65,28 +66,30 @@ Durant el quadrimestre s'han fet petites proves de concepte bàsiques amb èxit:
 
 Més enllà d'això no s'ha pogut integrar el sistema dins de l'expenedor per problemes de calendari i falta de temps.
 
-La unitat de prova ha estat desenvolupada amb èxit i és molt útil per transportar el sistema d'una manera còmode.
+La unitat de prova ha estat desenvolupada amb èxit i és molt útil per transportar el sistema d'una manera còmode i poder-hi fer proves sense necessitat de tenir un expenedor per fer-hi proves abans de mecanitzar-ho. Una de les ventatges que aporta és poder fer proves de la part del codi que controla les tensions dels circuits per saber en quin estat està l'expenedor i saber si pot expendre un producte concret o s'hi s'ha servit correctament.
 
+Una de les coses extres que s'ha hagut de fer i no ha sortit a la primera ha estat configurar la RPi perquè la pantalla quedi rotada\autocite{screen-rotation} 90\degree juntament amb els eixos del cursor tàctil\autocite{touch-rotation} (que són independents al que es mostra en pantalla) i quedi així cada cop que s'engegui l'aparell. També s'ha hagut de fer que s'engegui l'aplicació de client directament quan s'engegi l'aparell.
+\newpage
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/demonstrator_front}
 		\caption{Front de la tapa}
-		\label{fig:admin1}
+		\label{fig:test-top-front}
 	\end{subfigure}
 	\hspace{0.5cm}
 	\begin{subfigure}[b]{0.50\textwidth}
 		\includegraphics[width=\textwidth]{images/demonstrator_back}
 		\caption{Revers de la tapa}
-		\label{fig:admin2}
+		\label{fig:test-top-back}
 	\end{subfigure}
 	\caption{Tapa de la unitat de test}
-	\label{fig:intro-example}
+	\label{fig:test-unit-top}
 \end{figure}
 \vspace{-1em}
 \begin{figure}[H]
 \center
-\includegraphics[width=0.5\textwidth, angle =90]{images/demonstrator_bottom}
+\includegraphics[width=0.60\textwidth, angle =90]{images/demonstrator_bottom}
 \caption{Interior de la unitat de test}
-\label{fig:demonstrator_diagram}
+\label{fig:test-unit-bottom}
 \end{figure}
